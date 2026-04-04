@@ -1,0 +1,77 @@
+/* client/src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Variables ─────────────────────────────────────────────────────────── */
+:root {
+  --color-sage:    #2D5A27;
+  --color-forest:  #1B3022;
+  --color-white:   #F9FBF9;
+  --color-charcoal:#333333;
+  --color-muted:   #6B7280;
+
+  --radius-card:   1rem;
+  --radius-btn:    0.75rem;
+  --shadow-card:   0 4px 24px rgba(27, 48, 34, 0.10);
+  --transition:    0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── Base ──────────────────────────────────────────────────────────────────── */
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  color: var(--color-charcoal);
+  background: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: #f4f6f3; }
+::-webkit-scrollbar-thumb { background: #c8d8c4; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #2D5A27; }
+
+/* ─── Utility layer ─────────────────────────────────────────────────────────── */
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Earthy gradient backgrounds */
+  .bg-earthy-gradient {
+    background: linear-gradient(135deg, #f0fdf4 0%, #F9FBF9 50%, #f5f3f0 100%);
+  }
+  .bg-sage-gradient {
+    background: linear-gradient(135deg, #1B3022 0%, #2D5A27 100%);
+  }
+
+  /* Hover lift */
+  .hover-lift { transition: transform var(--transition), box-shadow var(--transition); }
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-float, 0 12px 40px rgba(27,48,34,0.16));
+  }
+}
+
+/* ─── Razorpay modal override ────────────────────────────────────────────────── */
+iframe.razorpay-checkout-frame {
+  border-radius: 1rem !important;
+}
+
+/* ─── Page transition ────────────────────────────────────────────────────────── */
+.page-enter  { opacity: 0; transform: translateY(16px); }
+.page-enter-active { opacity: 1; transform: translateY(0); transition: all 0.4s cubic-bezier(0.16,1,0.3,1); }
+.page-exit   { opacity: 1; }
+.page-exit-active { opacity: 0; transition: opacity 0.2s ease; }
